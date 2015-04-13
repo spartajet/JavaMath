@@ -236,9 +236,9 @@ public class Matrix {
 		if (m1.column != m2.column || m1.row != m2.row) {
 			throw new Exception("两个矩阵大小不一致，不能相加");
 		} else {
-			resultMatrix = new Matrix(m1.column, m1.row);
-			for (int i = 0; i < m1.column; i++) {
-				for (int j = 0; j < m1.row; j++) {
+			resultMatrix = new Matrix(m1.row, m1.column);
+			for (int i = 0; i < m1.row; i++) {
+				for (int j = 0; j < m1.column; j++) {
 					resultMatrix.set(i, j, m1.get(i, j) - m2.get(i, j));
 				}
 			}
@@ -262,7 +262,7 @@ public class Matrix {
 		if (m1.column != m2.row) {
 			throw new Exception("矩阵对应关系不正确,不能相乘");
 		}
-		Matrix resultmMatrix = new Matrix(m1.column, m2.row);
+		Matrix resultmMatrix = new Matrix(m1.row, m2.column);
 		for (int i = 0; i < m1.row; i++) {
 			for (int j = 0; j < m2.column; j++) {
 				for (int k = 0; k < m1.column; k++) {
