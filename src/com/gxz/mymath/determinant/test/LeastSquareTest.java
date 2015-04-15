@@ -44,12 +44,13 @@ public class LeastSquareTest {
 		
 		LinerLeastSquare leastSquare = new LinerLeastSquare();
 		logger.info("开始运算");
-		leastSquare.getDataFromTxt("testdata/linerLestSquareTestData", ",");
+		leastSquare.getDataFromTxt("testdata/linerLestSquareTestData1", ",");
 		leastSquare.CaculateparameterMatrix();
 		leastSquare.CaculateResidualMatrix();
 		leastSquare.CaculateAccuracy();
 		leastSquare.CaculateDiagonalcoefficientsmMatrix();
 		leastSquare.CaculateStandardDivisionMatrix();
+		
 	}
 
 }
