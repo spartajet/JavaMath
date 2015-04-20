@@ -1,4 +1,4 @@
-package com.gxz.mymath.determinant.test;
+package com.gxz.mymath.test;
 
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;

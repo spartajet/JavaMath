@@ -1,14 +1,10 @@
-package com.gxz.mymath.determinant.test;
+package com.gxz.mymath.test;
 
 import java.awt.EventQueue;
-import java.awt.Label;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
-import java.io.PipedReader;
-import java.io.PipedWriter;
-import java.io.Writer;
 
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
@@ -18,11 +14,8 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 
-import org.apache.log4j.Appender;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
-import org.apache.log4j.WriterAppender;
-import org.apache.log4j.spi.LoggerFactory;
 
 import com.gxz.mymath.arithmetic.leastsquare.LinerLeastSquare;
 
@@ -113,7 +106,7 @@ public class LeastSquareTestWin implements ActionListener {
 		if (e.getActionCommand().equals("selectDataFile")) {
 			jFileChooser = new JFileChooser();
 			jFileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
-			int state = jFileChooser.showDialog(new Label(), "选择数据文件");
+			jFileChooser.showDialog(new JLabel(), "选择数据文件");
 			dataFile = jFileChooser.getSelectedFile();
 			this.dataFiletextField.setText(dataFilePath);
 			if (dataFile.isFile()) {
