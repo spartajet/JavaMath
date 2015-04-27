@@ -31,6 +31,7 @@ import com.gxz.mymath.arithmetic.leastsquare.LinerLeastSquare;
  * 
  * @类型功能描述：最小二乘法的测试类
  * @作者 郭晓忠(guoxiaozhong)
+ * 测试apple
  * @修改历史：(修改人，修改时间，修改原因/内容)</p>
  */
 public class LeastSquareTest {
