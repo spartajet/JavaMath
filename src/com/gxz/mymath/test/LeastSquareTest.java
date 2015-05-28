@@ -37,7 +37,15 @@ import com.gxz.mymath.arithmetic.leastsquare.LinerLeastSquare;
 public class LeastSquareTest {
 
 	
-
+/**
+ * 
+		* @方法功能描述：
+		* @作者 郭晓忠(guoxiaozhong)
+		* @创建日期 ：2015年4月27日 下午6:37:33</p>
+		* @param args
+		* @throws Exception
+		* @修改历史 ：(修改人，修改时间，修改原因/内容)</p>
+ */
 	public static void main(String[] args) throws Exception {
 		// TODO Auto-generated method stub
 		Logger logger=Logger.getLogger(LeastSquareTest.class);
@@ -51,7 +59,7 @@ public class LeastSquareTest {
 		leastSquare.CaculateAccuracy();
 		leastSquare.CaculateDiagonalcoefficientsmMatrix();
 		leastSquare.CaculateStandardDivisionMatrix();
-		
+		System.out.println();
 	}
 
 }

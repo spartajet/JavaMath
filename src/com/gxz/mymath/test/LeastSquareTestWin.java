@@ -100,6 +100,12 @@ public class LeastSquareTestWin implements ActionListener {
 		frame.getContentPane().add(scrollPane);
 	}
 
+	/**
+	 * 
+	 * @覆盖方法
+	 * @描述
+	 * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
+	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
