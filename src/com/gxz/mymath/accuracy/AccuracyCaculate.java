@@ -10,8 +10,22 @@ import java.math.BigDecimal;
  */
 public class AccuracyCaculate {
 
-	// 默认除法运算精度
+	/**
+	 * 默认除法运算精度
+	 */
 	private static final int DEF_DIV_SCALE = 10;
+	/**
+	 * 触发运算精度
+	 */
+	private static int diviceScale = 10;
+
+	public static int getDiviceScale() {
+		return diviceScale;
+	}
+
+	public static void setDiviceScale(int diviceScale) {
+		AccuracyCaculate.diviceScale = diviceScale;
+	}
 
 	/**
 	 * 
@@ -22,13 +36,16 @@ public class AccuracyCaculate {
 	}
 
 	/**
-	 * 提供精确的加法运算。
 	 * 
+	 * @方法功能描述：精确加法运算
+	 * @作者 郭晓忠(guoxiaozhong)
+	 * @创建日期 ：2015年5月28日 下午8:38:16</p>
 	 * @param v1
-	 *            被加数
-	 * @param v2
 	 *            加数
-	 * @return 两个参数的和
+	 * @param v2
+	 *            被加数
+	 * @return 和
+	 * @修改历史 ：(修改人，修改时间，修改原因/内容)</p>
 	 */
 	public static double add(double v1, double v2) {
 		BigDecimal b1 = new BigDecimal(Double.toString(v1));
@@ -37,13 +54,16 @@ public class AccuracyCaculate {
 	}
 
 	/**
-	 * 提供精确的减法运算。
 	 * 
+	 * @方法功能描述：精确的减法算法
+	 * @作者 郭晓忠(guoxiaozhong)
+	 * @创建日期 ：2015年5月28日 下午8:39:16</p>
 	 * @param v1
 	 *            被减数
 	 * @param v2
 	 *            减数
-	 * @return 两个参数的差
+	 * @return 差
+	 * @修改历史 ：(修改人，修改时间，修改原因/内容)</p>
 	 */
 	public static double sub(double v1, double v2) {
 		BigDecimal b1 = new BigDecimal(Double.toString(v1));
@@ -52,13 +72,16 @@ public class AccuracyCaculate {
 	}
 
 	/**
-	 * 提供精确的乘法运算。
 	 * 
+	 * @方法功能描述： 精确的乘法
+	 * @作者 郭晓忠(guoxiaozhong)
+	 * @创建日期 ：2015年5月28日 下午8:40:41</p>
 	 * @param v1
 	 *            被乘数
 	 * @param v2
 	 *            乘数
-	 * @return 两个参数的积
+	 * @return 积
+	 * @修改历史 ：(修改人，修改时间，修改原因/内容)</p>
 	 */
 	public static double mul(double v1, double v2) {
 		BigDecimal b1 = new BigDecimal(Double.toString(v1));
@@ -67,28 +90,34 @@ public class AccuracyCaculate {
 	}
 
 	/**
-	 * 提供（相对）精确的除法运算，当发生除不尽的情况时，精确到 小数点以后10位，以后的数字四舍五入。
 	 * 
+	 * @方法功能描述：提供（相对）精确的除法运算，当发生除不尽的情况时，精确到 小数点以后10位，以后的数字四舍五入。
+	 * @作者 郭晓忠(guoxiaozhong)
+	 * @创建日期 ：2015年6月2日 下午5:20:46</p>
 	 * @param v1
 	 *            被除数
 	 * @param v2
 	 *            除数
-	 * @return 两个参数的商
+	 * @return 商
+	 * @修改历史 ：(修改人，修改时间，修改原因/内容)</p>
 	 */
 	public static double div(double v1, double v2) {
 		return div(v1, v2, DEF_DIV_SCALE);
 	}
 
 	/**
-	 * 提供（相对）精确的除法运算。当发生除不尽的情况时，由scale参数指 定精度，以后的数字四舍五入。
 	 * 
+	 * @方法功能描述：提供（相对）精确的除法运算。当发生除不尽的情况时，由scale参数指 定精度，以后的数字四舍五入。
+	 * @作者 郭晓忠(guoxiaozhong)
+	 * @创建日期 ：2015年6月2日 下午5:21:53</p>
 	 * @param v1
 	 *            被除数
 	 * @param v2
 	 *            除数
 	 * @param scale
-	 *            表示表示需要精确到小数点以后几位。
-	 * @return 两个参数的商
+	 *            精确到小数点之后几位
+	 * @return 商
+	 * @修改历史 ：(修改人，修改时间，修改原因/内容)</p>
 	 */
 	public static double div(double v1, double v2, int scale) {
 		if (scale < 0) {
@@ -101,13 +130,14 @@ public class AccuracyCaculate {
 	}
 
 	/**
-	 * 提供精确的小数位四舍五入处理。
 	 * 
-	 * @param v
-	 *            需要四舍五入的数字
-	 * @param scale
-	 *            小数点后保留几位
-	 * @return 四舍五入后的结果
+	 * @方法功能描述：提供精确的小数位四舍五入处理。
+	 * @作者 郭晓忠(guoxiaozhong)
+	 * @创建日期 ：2015年6月2日 下午5:31:56</p>
+	 * @param v		需要四舍五入的数字
+	 * @param scale	小数点后保留几位
+	 * @return		结果
+	 * @修改历史 ：(修改人，修改时间，修改原因/内容)</p>
 	 */
 	public static double round(double v, int scale) {
 		if (scale < 0) {
