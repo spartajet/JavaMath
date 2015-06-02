@@ -4,6 +4,7 @@ import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 
 import com.gxz.mymath.arithmetic.leastsquare.LinerLeastSquare;
+import com.gxz.mymath.arithmetic.leastsquare.LinerLeastSquareInterface;
 
 /**
  *                            _ooOoo_
@@ -34,7 +35,7 @@ import com.gxz.mymath.arithmetic.leastsquare.LinerLeastSquare;
  * 测试apple
  * @修改历史：(修改人，修改时间，修改原因/内容)</p>
  */
-public class LeastSquareTest {
+public class LeastSquareTest  {
 
 	
 /**

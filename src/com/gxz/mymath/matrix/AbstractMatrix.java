@@ -267,5 +267,7 @@ public abstract class AbstractMatrix {
 	public void setTransposeMatrix(AbstractMatrix transposeMatrix) {
 		this.transposeMatrix = transposeMatrix;
 	}
+	
+	
 
 }

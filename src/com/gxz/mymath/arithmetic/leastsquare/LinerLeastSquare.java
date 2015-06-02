@@ -11,6 +11,7 @@ import java.util.List;
 
 import org.apache.log4j.Logger;
 
+import com.gxz.mymath.matrix.AbstractMatrix;
 import com.gxz.mymath.matrix.Matrix;
 
 /**
@@ -42,7 +43,7 @@ import com.gxz.mymath.matrix.Matrix;
  * @作者 郭晓忠(guoxiaozhong)
  * @修改历史：(修改人，修改时间，修改原因/内容)</p>
  */
-public class LinerLeastSquare {
+public class LinerLeastSquare implements LinerLeastSquareInterface {
 	/**
 	 * A矩阵
 	 */
@@ -141,7 +142,7 @@ public class LinerLeastSquare {
 		String[] tempstrStrings;
 		for (int i = 0; i < alldatasList.size(); i++) {
 			tempstrStrings = alldatasList.get(i);
-			for (int j = 0; j < aMatrix.getcolumn(); j++) {
+			for (int j = 0; j < aMatrix.getColumn(); j++) {
 				if (j == 0) {
 					aMatrix.set(i, j, 1);
 				} else {
@@ -165,16 +166,14 @@ public class LinerLeastSquare {
 	 * @修改历史 ：(修改人，修改时间，修改原因/内容)</p>
 	 */
 	public void CaculateparameterMatrix() throws Exception {
-		Matrix ATA =
-				Matrix.multipleMatrix(aMatrix.getTransposeMatrix(), aMatrix);
+		Matrix ATA = aMatrix.getTransposeMatrix().multiple(aMatrix);
 		logger.info("AT*A矩阵结果:\n" + ATA);
 		Matrix cinverseMatrix = ATA.getInverse();
 		logger.info("C(AT*A矩阵)的逆矩阵：\n" + cinverseMatrix);
 		Matrix cinverseAT =
-				Matrix.multipleMatrix(cinverseMatrix,
-						aMatrix.getTransposeMatrix());
+				cinverseMatrix.multiple(aMatrix.getTransposeMatrix());
 		logger.info("C逆*AT的结果：\n" + cinverseAT);
-		this.parameterMatrix = Matrix.multipleMatrix(cinverseAT, yMatrix);
+		this.parameterMatrix = cinverseAT.multiple(yMatrix);
 		logger.info("参数矩阵结果：\n" + parameterMatrix);
 	}
 
@@ -187,9 +186,7 @@ public class LinerLeastSquare {
 	 * @修改历史 ：(修改人，修改时间，修改原因/内容)</p>
 	 */
 	public void CaculateResidualMatrix() throws Exception {
-		this.residualMatrix =
-				Matrix.MinusMatrix(yMatrix,
-						Matrix.multipleMatrix(aMatrix, parameterMatrix));
+		this.residualMatrix = yMatrix.Minus(aMatrix.multiple(parameterMatrix));
 		logger.info("残差矩阵结果：\n" + residualMatrix);
 	}
 
@@ -202,11 +199,11 @@ public class LinerLeastSquare {
 	 */
 	public void CaculateAccuracy() {
 		double vpower = 0;
-		for (int i = 0; i < this.residualMatrix.getrow(); i++) {
+		for (int i = 0; i < this.residualMatrix.getRow(); i++) {
 			vpower += (Math.pow(this.residualMatrix.get(i, 0), 2));
 		}
 		this.accuracy =
-				Math.sqrt(vpower / (aMatrix.getrow() - aMatrix.getcolumn()));
+				Math.sqrt(vpower / (aMatrix.getRow() - aMatrix.getColumn()));
 		logger.info("根据残差矩阵计算得到的精度即标准差为：" + accuracy);
 	}
 
@@ -220,8 +217,7 @@ public class LinerLeastSquare {
 	 */
 	public void CaculateDiagonalcoefficientsmMatrix() throws Exception {
 		this.diagonalcoefficientsmMatrix =
-				Matrix.multipleMatrix(aMatrix.getTransposeMatrix(), aMatrix)
-						.getInverse();
+				aMatrix.getTransposeMatrix().multiple(aMatrix).getInverse();
 		logger.info("对角线系数矩阵为：\n" + diagonalcoefficientsmMatrix);
 	}
 
@@ -235,7 +231,7 @@ public class LinerLeastSquare {
 	public void CaculateStandardDivisionMatrix() {
 		// this.standardDivisionMatrix =
 		// new Matrix(this.parameterMatrix.getrow(), 1);
-		for (int i = 0; i < this.standardDivisionMatrix.getrow(); i++) {
+		for (int i = 0; i < this.standardDivisionMatrix.getRow(); i++) {
 			this.standardDivisionMatrix.set(
 					i,
 					0,

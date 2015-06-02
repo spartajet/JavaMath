@@ -191,15 +191,15 @@ public class Matrix extends AbstractMatrix {
 	 */
 	@Override
 	public Matrix getTransposeMatrix() {
-		this.setTransposeMatrix(new Matrix(this.getColumn(), this.getRow()));
+		Matrix resultMatrix = new Matrix(this.getColumn(), this.getRow());
 		// this.getTransposeMatrix() = new Matrix(this.getColumn(),
 		// this.getRow());
 		for (int i = 0; i < this.getColumn(); i++) {
 			for (int j = 0; j < this.getRow(); j++) {
-				this.getTransposeMatrix().set(i, j, this.get(j, i));
+				resultMatrix.set(i, j, this.get(j, i));
 			}
 		}
-		return this.getTransposeMatrix();
+		return resultMatrix;
 	}
 
 	// /**
@@ -284,13 +284,13 @@ public class Matrix extends AbstractMatrix {
 	 * @see com.gxz.mymath.matrix.AbstractMatrix#Minus(com.gxz.mymath.matrix.AbstractMatrix)
 	 */
 	@Override
-	public AbstractMatrix Minus(AbstractMatrix matrix) throws Exception {
+	public Matrix Minus(AbstractMatrix matrix) throws Exception {
 		Matrix resultMatrix;
 		if (this.getColumn() != matrix.getColumn()
 				|| this.getRow() != matrix.getRow()) {
 			throw new Exception("两个矩阵大小不一致，不能相加");
 		} else {
-			resultMatrix = new Matrix(this.getColumn(), this.getRow());
+			resultMatrix = new Matrix(this.getRow(),this.getColumn());
 			for (int i = 0; i < this.getRow(); i++) {
 				for (int j = 0; j < this.getColumn(); j++) {
 					resultMatrix.set(i, j, this.get(i, j) - matrix.get(i, j));
@@ -333,7 +333,7 @@ public class Matrix extends AbstractMatrix {
 	// }
 
 	@Override
-	public AbstractMatrix multiple(AbstractMatrix matrix) throws Exception {
+	public Matrix multiple(AbstractMatrix matrix) throws Exception {
 		if (this.getColumn() != matrix.getRow()) {
 			throw new Exception("矩阵对应关系不正确,不能相乘");
 		}
@@ -380,7 +380,7 @@ public class Matrix extends AbstractMatrix {
 	 * @see com.gxz.mymath.matrix.AbstractMatrix#multiple(double)
 	 */
 	@Override
-	public AbstractMatrix multiple(double mul) {
+	public Matrix multiple(double mul) {
 		Matrix resultMatrix = new Matrix(this.getRow(), this.getColumn());
 		for (int i = 0; i < this.getRow(); i++) {
 			for (int j = 0; j < this.getColumn(); j++) {
@@ -437,9 +437,8 @@ public class Matrix extends AbstractMatrix {
 	 * @修改历史 ：(修改人，修改时间，修改原因/内容)</p>
 	 */
 	@Override
-	public AbstractMatrix getAlgebraicComplementMinorMatrix() throws Exception {
-		AbstractMatrix resultmMatrix =
-				new Matrix(this.getRow(), this.getColumn());
+	public Matrix getAlgebraicComplementMinorMatrix() throws Exception {
+		Matrix resultmMatrix = new Matrix(this.getRow(), this.getColumn());
 		Determinant determinant = new Determinant(this);
 		for (int i = 0; i < this.getRow(); i++) {
 			for (int j = 0; j < this.getColumn(); j++) {
@@ -461,7 +460,7 @@ public class Matrix extends AbstractMatrix {
 	 * @修改历史 ：(修改人，修改时间，修改原因/内容)</p>
 	 */
 	@Override
-	public AbstractMatrix getInverse() throws Exception {
+	public Matrix getInverse() throws Exception {
 		// return multiple(1 / getModule(),
 		// getAlgebraicComplementMinorMatrix());
 		return this.getAlgebraicComplementMinorMatrix().multiple(
@@ -470,7 +469,7 @@ public class Matrix extends AbstractMatrix {
 
 	/**
 	 * 
-	 * @覆盖方法   判断是否是对称矩阵
+	 * @覆盖方法 判断是否是对称矩阵
 	 * @描述
 	 * @see com.gxz.mymath.matrix.AbstractMatrix#isMirror()
 	 */
