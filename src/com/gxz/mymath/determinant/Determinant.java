@@ -1,4 +1,6 @@
 package com.gxz.mymath.determinant;
+
+import com.gxz.mymath.matrix.AbstractMatrix;
 /**
  *                            _ooOoo_
  *                           o8888888o
@@ -23,10 +25,11 @@ package com.gxz.mymath.determinant;
  */
 import com.gxz.mymath.matrix.Matrix;
 
-public class Determinant {
+public class Determinant extends AbstractDeterminant {
 	private double[][] determinantData;
-	private int order;
-	private double det;
+
+	// private int order;
+	// private double det;
 
 	/**
 	 * 
@@ -35,8 +38,8 @@ public class Determinant {
 	 * @param order
 	 */
 	public Determinant(int order) {
-		this.order = order;
-		this.determinantData = new double[this.order][this.order];
+		super(order);
+		this.determinantData = new double[this.getOrder()][this.getOrder()];
 
 	}
 
@@ -47,27 +50,29 @@ public class Determinant {
 	 * @param matrix
 	 * @throws Exception
 	 */
-	public Determinant(Matrix matrix) throws Exception {
-		if (matrix.getrow() != matrix.getcolumn()) {
-			throw new Exception("矩阵不是方阵，无法转换为行列式");
-		}
-		this.order = matrix.getrow();
-		this.determinantData = new double[this.order][this.order];
-		for (int i = 0; i < this.order; i++) {
-			for (int j = 0; j < this.order; j++) {
+	public Determinant(AbstractMatrix matrix) throws Exception {
+		// if (matrix.getrow() != matrix.getcolumn()) {
+		// throw new Exception("矩阵不是方阵，无法转换为行列式");
+		// }
+		// this.order = matrix.getrow();
+		super(matrix);
+		this.determinantData = new double[this.getOrder()][this.getOrder()];
+		for (int i = 0; i < this.getOrder(); i++) {
+			for (int j = 0; j < this.getOrder(); j++) {
 				this.determinantData[i][j] = matrix.get(i, j);
 			}
 		}
 	}
 
+	@Override
 	public Determinant getAlgebraicComplementMinor(int row, int column)
 			throws Exception {
-		if (row > this.order || column > this.order) {
+		if (row > this.getOrder() || column > this.getOrder()) {
 			throw new Exception("给定索引超出范围");
 		}
-		Determinant resultDterminant = new Determinant(this.order - 1);
-		for (int i = 0; i < this.order - 1; i++) {
-			for (int j = 0; j < this.order - 1; j++) {
+		Determinant resultDterminant = new Determinant(this.getOrder() - 1);
+		for (int i = 0; i < this.getOrder() - 1; i++) {
+			for (int j = 0; j < this.getOrder() - 1; j++) {
 				if (i < row && j < column) {
 					resultDterminant.set(i, j, this.get(i, j));
 				} else if (i >= row && j < column) {
@@ -82,16 +87,14 @@ public class Determinant {
 		return resultDterminant;
 	}
 
+	@Override
 	public double get(int row, int column) {
 		return this.determinantData[row][column];
 	}
 
+	@Override
 	public void set(int row, int column, double value) {
 		this.determinantData[row][column] = value;
-	}
-
-	public int getOrder() {
-		return order;
 	}
 
 	/**
@@ -104,21 +107,22 @@ public class Determinant {
 	 * @修改历史 ：(修改人，修改时间，修改原因/内容)</p>
 	 */
 	public double getDet() throws Exception {
-		if (this.order == 1) {
+		double resultDet = 0;
+		if (this.getOrder() == 1) {
 			return this.get(0, 0);
-		} else if (this.order == 2) {
+		} else if (this.getOrder() == 2) {
 			return this.get(0, 0) * this.get(1, 1) - this.get(0, 1)
 					* this.get(1, 0);
 		} else {
-			for (int i = 0; i < this.order; i++) {
+			for (int i = 0; i < this.getOrder(); i++) {
 				if (this.get(0, i) != 0) {
-					this.det +=
+					resultDet +=
 							(Math.pow(-1, i) * this.get(0, i) * this
 									.getAlgebraicComplementMinor(0, i).getDet());
 				}
 			}
 		}
-		return det;
+		return resultDet;
 	}
 
 }

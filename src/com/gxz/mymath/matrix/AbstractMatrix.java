@@ -264,4 +264,8 @@ public abstract class AbstractMatrix {
 		this.row = row;
 	}
 
+	public void setTransposeMatrix(AbstractMatrix transposeMatrix) {
+		this.transposeMatrix = transposeMatrix;
+	}
+
 }
