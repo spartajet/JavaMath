@@ -3,6 +3,7 @@ package com.gxz.mymath.test;
 import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 
+import com.gxz.mymath.arithmetic.leastsquare.AccuracyLinerLeastSquare;
 import com.gxz.mymath.arithmetic.leastsquare.LinerLeastSquare;
 import com.gxz.mymath.arithmetic.leastsquare.LinerLeastSquareInterface;
 
@@ -52,14 +53,15 @@ public class LeastSquareTest  {
 		Logger logger=Logger.getLogger(LeastSquareTest.class);
 		PropertyConfigurator.configure("log4j.properties");
 		
-		LinerLeastSquare leastSquare = new LinerLeastSquare();
+//		LinerLeastSquare leastSquare = new LinerLeastSquare();
+		LinerLeastSquareInterface leastSquareInterface=new LinerLeastSquare();
 		logger.info("开始运算");
-		leastSquare.getDataFromTxt("testdata/linerLestSquareTestData1", ",");
-		leastSquare.CaculateparameterMatrix();
-		leastSquare.CaculateResidualMatrix();
-		leastSquare.CaculateAccuracy();
-		leastSquare.CaculateDiagonalcoefficientsmMatrix();
-		leastSquare.CaculateStandardDivisionMatrix();
+		leastSquareInterface.getDataFromTxt("testdata/linerLestSquareTestData1", ",");
+		leastSquareInterface.CaculateparameterMatrix();
+		leastSquareInterface.CaculateResidualMatrix();
+		leastSquareInterface.CaculateAccuracy();
+		leastSquareInterface.CaculateDiagonalcoefficientsmMatrix();
+		leastSquareInterface.CaculateStandardDivisionMatrix();
 		System.out.println();
 	}
 

@@ -8,7 +8,6 @@ public abstract class AbstractDeterminant {
 	private double det;
 
 	public AbstractDeterminant(int order) {
-		super();
 		this.order = order;
 	}
 
